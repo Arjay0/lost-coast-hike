@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mattole to Black Sands</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap">
+<style>
+  :root {
+    --paper:#F5F5EF; --ink:#23251F; --mut:#5D615A; --line:#D3D6CB;
+    --wash:#EBECE3; --tide:#0E5A5E; --tide-ink:#0E5A5E; --gate:#A34210;
+    --gate-wash:#F3E4D9; --card:#FBFBF7;
+  }
+  :root:not([data-theme="light"]) { color-scheme:light dark; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#16181B; --ink:#E6E5DC; --mut:#9DA39A; --line:#3A3E38;
+      --wash:#22252A; --tide:#63B4B0; --tide-ink:#8FCFCB; --gate:#E08050;
+      --gate-wash:#33261E; --card:#1C1F23;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#16181B; --ink:#E6E5DC; --mut:#9DA39A; --line:#3A3E38;
+    --wash:#22252A; --tide:#63B4B0; --tide-ink:#8FCFCB; --gate:#E08050;
+    --gate-wash:#33261E; --card:#1C1F23;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+         font:16px/1.5 "Source Serif 4",Georgia,serif; }
+  .wrap { max-width:46rem; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  .eyebrow { font:600 .72rem/1 Archivo,Helvetica,sans-serif;
+             font-stretch:80%; letter-spacing:.14em; text-transform:uppercase;
+             color:var(--tide-ink); margin:0 0 .5rem; }
+  h1 { font:800 2.1rem/1.1 Archivo,Helvetica,sans-serif; margin:0;
+       letter-spacing:-.01em; text-wrap:balance; }
+  .meta { color:var(--mut); font-size:.92rem; margin:.6rem 0 0; }
+  .rule-card { border:2px solid var(--gate); background:var(--gate-wash);
+               border-radius:8px; padding:.85rem 1rem; margin:1.6rem 0; }
+  .rule-card h2 { margin:0 0 .35rem; font:700 .8rem/1 Archivo,Helvetica,sans-serif;
+                  letter-spacing:.12em; text-transform:uppercase; color:var(--gate); }
+  .rule-card p { margin:0; font-size:.95rem; }
+  h2.sect { font:700 1.05rem/1.2 Archivo,Helvetica,sans-serif; margin:2.2rem 0 .6rem;
+            padding-bottom:.25rem; border-bottom:2px solid var(--ink); }
+  .day { background:var(--card); border:1px solid var(--line); border-radius:10px;
+         margin:1rem 0; overflow:hidden; break-inside:avoid; }
+  .day-head { display:flex; justify-content:space-between; align-items:baseline;
+              flex-wrap:wrap; gap:.2rem .8rem; padding:.6rem .9rem;
+              background:var(--wash); border-bottom:1px solid var(--line); }
+  .day-head h3 { margin:0; font:700 1rem/1.3 Archivo,Helvetica,sans-serif; }
+  .day-head .mi { font:600 .72rem/1.6 Archivo,Helvetica,sans-serif;
+                  font-stretch:80%; letter-spacing:.06em; text-transform:uppercase;
+                  color:var(--mut); }
+  .sched { width:100%; border-collapse:collapse; }
+  .sched td { padding:.45rem .9rem; border-bottom:1px solid var(--line);
+              vertical-align:baseline; font-size:.95rem; }
+  .sched tr:last-child td { border-bottom:none; }
+  .sched td.t { font:700 .88rem/1.6 Archivo,Helvetica,sans-serif;
+                font-variant-numeric:tabular-nums; white-space:nowrap;
+                width:5.4rem; padding-right:0; }
+  .sched tr.gate td { box-shadow:inset 4px 0 0 var(--gate); background:var(--gate-wash); }
+  .sched tr.gate td.t { color:var(--gate); }
+  .gate-tag { font:700 .68rem/1 Archivo,Helvetica,sans-serif; letter-spacing:.1em;
+              text-transform:uppercase; color:var(--gate); }
+  .tides { padding:.5rem .9rem .65rem; font:500 .74rem/1.7 Archivo,Helvetica,sans-serif;
+           font-stretch:85%; letter-spacing:.04em; color:var(--mut);
+           border-top:1px dashed var(--line); font-variant-numeric:tabular-nums; }
+  .tides b { color:var(--tide-ink); }
+  .fallback { padding:0 .9rem .7rem; font-size:.86rem; color:var(--mut);
+              font-style:italic; }
+  table.ref { width:100%; border-collapse:collapse; font-size:.85rem;
+              font-variant-numeric:tabular-nums; }
+  table.ref th { font:700 .68rem/1.4 Archivo,Helvetica,sans-serif;
+                 letter-spacing:.08em; text-transform:uppercase; background:var(--wash);
+                 text-align:left; }
+  table.ref th, table.ref td { border:1px solid var(--line); padding:.35rem .5rem; }
+  .scrolls { overflow-x:auto; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:0 2rem; }
+  @media (max-width:620px){ .cols { grid-template-columns:1fr; } }
+  ul { margin:.4rem 0; padding-left:1.2rem; }
+  li { margin:.25rem 0; font-size:.93rem; }
+  .grades li b { font-family:Archivo,Helvetica,sans-serif; letter-spacing:.05em; }
+  .g-ok { color:var(--tide-ink); } .g-no { color:var(--gate); }
+  .foot { margin-top:2.5rem; padding-top:.8rem; border-top:1px solid var(--line);
+          color:var(--mut); font-size:.82rem; }
+  a { color:var(--tide-ink); }
+  @media print {
+    body { background:#fff; color:#23251F; font-size:12.5px; }
+    .wrap { max-width:none; padding:0; }
+    .day, .rule-card { break-inside:avoid; }
+  }
+</style>
+
+<div class="wrap">
+<p class="eyebrow">Lost Coast Trail · King Range Wilderness</p>
+<h1>Mattole to Black Sands</h1>
+<p class="meta">Friday Sep 11 – Monday Sep 14, 2026 · southbound · ~24.6 miles ·
+3 nights on the beach · all times PDT.<br>
+Tides: NOAA Shelter Cove station 9418024, verified against NOAA 8/31.
+Sep 11 is a new moon — spring tides, so the water rises and falls <em>fast</em>.</p>
+
+<div class="rule-card">
+  <h2>The one rule</h2>
+  <p>Two stretches of this trail flood at high tide. We enter a tide zone only
+  when the tide is <b>below 3 feet and falling</b>. The gate times below are
+  computed for our dates — if we're early to a gate, we wait. And never turn
+  your back on the ocean: this coast is known for sneaker waves.</p>
+</div>
+
+<!-- DAY 1 -->
+<div class="day">
+  <div class="day-head"><h3>Fri 9/11 · Mattole Beach → Cooskie Creek</h3>
+    <span class="mi">6.4 mi · zone A · sunset 7:25p</span></div>
+  <table class="sched">
+    <tr><td class="t">2:30 pm</td><td><b>Shuttle drops us at Mattole trailhead.</b>
+      Fill bottles (trailhead or Mattole River), then get moving — the tide is
+      already falling and works in our favor all afternoon.</td></tr>
+    <tr><td class="t">4:15 pm</td><td>Punta Gorda Lighthouse (mile 3.3) — quick
+      look, sea lions on the rocks, keep moving.</td></tr>
+    <tr class="gate"><td class="t">4:45 pm</td><td><span class="gate-tag">Gate ·
+      Sea Lion Gulch (mile 4.5)</span><br>Open since 3:20 pm. <b>Top off water
+      here</b> — last reliable fill before the zone.</td></tr>
+    <tr><td class="t">6:00 pm</td><td><b>Camp at Cooskie Creek (mile 6.4)</b> —
+      above the driftwood line at the creek mouth. About 1.5 h of daylight to
+      set up and eat.</td></tr>
+  </table>
+  <div class="tides">Tides — L 5:59a 0.1′ · H 12:16p 6.0′ · <b>L 6:17p 0.9′</b> ·
+    zone passable ≈ 3:20p–8:45p</div>
+  <p class="fallback">Even at 1.5 mph we're in camp an hour before dusk, and the
+  window holds to ~8:45. Shuttle badly late? Camp at Sea Lion Gulch, do zone A
+  in Saturday's early window instead.</p>
+</div>
+
+<!-- DAY 2 -->
+<div class="day">
+  <div class="day-head"><h3>Sat 9/12 · Cooskie Creek → Big Flat</h3>
+    <span class="mi">10.2 mi · longest day · sunset 7:24p</span></div>
+  <table class="sched">
+    <tr class="gate"><td class="t">7:00 am</td><td><span class="gate-tag">Hard
+      deadline — moving by 7:30</span><br>The zone A window closes ~9:10 am.
+      Coffee can happen at Randall.</td></tr>
+    <tr><td class="t">8:15 am</td><td><b>Randall Creek (mile 8.5) — zone A
+      done.</b> The rest of the day is tide-free; relax.</td></tr>
+    <tr><td class="t">9:00 am</td><td>Spanish Creek (mile ~9.8) — second
+      breakfast.</td></tr>
+    <tr><td class="t">12:00 pm</td><td>Big Creek (mile ~12.9) — lunch, dry the
+      tents, refill.</td></tr>
+    <tr><td class="t">3:00 pm</td><td><b>Camp at Big Flat (mile 16.6)</b> — the
+      classic Lost Coast camp. Long, lazy afternoon.</td></tr>
+  </table>
+  <div class="tides">Tides — H 12:23a 6.1′ · <b>L 6:34a 0.6′</b> · H 12:48p 6.2′ ·
+    L 7:03p 0.6′ · morning window ≈ 3:50a–9:10a</div>
+  <p class="fallback">Group oversleeps past 7:30? We don't race a rising tide —
+  we wait for the afternoon window (~4:05 pm) and shorten the day; Sunday
+  becomes the long one.</p>
+</div>
+
+<!-- DAY 3 -->
+<div class="day">
+  <div class="day-head"><h3>Sun 9/13 · Big Flat → Shipman Creek</h3>
+    <span class="mi">2.8 mi · rest day + zone B entry · sunset 7:22p</span></div>
+  <table class="sched">
+    <tr><td class="t">morning</td><td><b>Recovery day.</b> Sleep in, dry gear,
+      eat big, watch the surfers who fly into Big Flat. <b>Top off water at Big
+      Flat Creek before we leave</b> — last sure fill before zone B.</td></tr>
+    <tr><td class="t">4:00 pm</td><td>Start down the beach toward Miller
+      Flat.</td></tr>
+    <tr class="gate"><td class="t">4:40 pm</td><td><span class="gate-tag">Gate ·
+      Miller Flat (mile 17.5)</span><br>Do not pass before 4:40 — tide falling
+      toward a 0.4′ low, the best window of the whole trip.</td></tr>
+    <tr><td class="t">5:45 pm</td><td><b>Camp at Shipman Creek (mile ~19.4)</b>,
+      above the driftwood line.</td></tr>
+  </table>
+  <div class="tides">Tides — H 1:13a 5.7′ · L 7:08a 1.2′ · H 1:19p 6.2′ ·
+    <b>L 7:47p 0.4′</b> · evening window opens ≈ 4:40p</div>
+  <p class="fallback">If everyone's feeling strong and the surf is calm we can
+  push to Buck Creek (mile ~20.9, arrive ~6:45, dusk 7:50) and Monday gets
+  trivial. We decide at Shipman, not before.</p>
+</div>
+
+<!-- DAY 4 -->
+<div class="day">
+  <div class="day-head"><h3>Mon 9/14 · Shipman Creek → Black Sands Beach</h3>
+    <span class="mi">5.2 mi · out by noon · sunrise 6:56a</span></div>
+  <table class="sched">
+    <tr class="gate"><td class="t">7:15 am</td><td><span class="gate-tag">Start —
+      8:15 at the absolute latest</span><br>Window runs ~5:20–9:55 am. This
+      morning has the trip's weakest low (1.7′), so there's less beach than
+      earlier days — expect to walk higher on the slope.</td></tr>
+    <tr><td class="t">8:30 am</td><td><b>Gitchell Creek (mile 21.5) — zone B
+      done.</b> Tide-free from here.</td></tr>
+    <tr><td class="t">10:15 am</td><td><b>Black Sands Beach trailhead, Shelter
+      Cove (mile ~24.6).</b> Cell signal returns — call home, find
+      lunch.</td></tr>
+  </table>
+  <div class="tides">Tides — H 2:04a 5.2′ · <b>L 7:41a 1.7′</b> · H 1:50p 6.1′ ·
+    zone closes ≈ 9:55a and rises fast after</div>
+  <p class="fallback">Miss the morning window entirely? We sit in camp — the
+  evening window (~4:50 pm, 0.4′ low) reaches Gitchell, then it's headlamps out
+  or one bonus night and a Tuesday-morning exit.</p>
+</div>
+
+<h2 class="sect">Full tide table — Shelter Cove (PDT)</h2>
+<div class="scrolls">
+<table class="ref">
+  <tr><th>Day</th><th>Low</th><th>High</th><th>Low</th><th>High (next am)</th>
+      <th>Zones passable (&lt;3 ft)</th></tr>
+  <tr><td>Fri 9/11</td><td>5:59a · 0.1′</td><td>12:16p · 6.0′</td>
+      <td>6:17p · 0.9′</td><td>12:23a · 6.1′</td><td>≈3:20p – 8:45p</td></tr>
+  <tr><td>Sat 9/12</td><td>6:34a · 0.6′</td><td>12:48p · 6.2′</td>
+      <td>7:03p · 0.6′</td><td>1:13a · 5.7′</td><td>≈3:50a – 9:10a · ≈4:05p on</td></tr>
+  <tr><td>Sun 9/13</td><td>7:08a · 1.2′</td><td>1:19p · 6.2′</td>
+      <td>7:47p · 0.4′</td><td>2:04a · 5.2′</td><td>≈4:30a – 9:30a · ≈4:40p on</td></tr>
+  <tr><td>Mon 9/14</td><td>7:41a · 1.7′</td><td>1:50p · 6.1′</td>
+      <td>8:32p · 0.4′</td><td>—</td><td>≈5:20a – 9:55a · ≈4:50p on</td></tr>
+</table>
+</div>
+
+<div class="cols">
+<div>
+<h2 class="sect">Surf: go / no-go</h2>
+<ul class="grades">
+  <li><b class="g-ok">GREEN</b> — surf ≤ 6 ft, period under 13 s: normal care.</li>
+  <li><b>CAUTION</b> — 6–10 ft <em>or</em> swell period ≥ 13 s (long-period swell
+      = sneaker waves even when it looks mellow): deepest hour of each window
+      only, enter early.</li>
+  <li><b class="g-no">NO-GO</b> — over 10 ft or any NWS High Surf / Beach
+      Hazards alert: we stay in camp and wait a cycle. Every camp has water;
+      nobody gets hurt waiting.</li>
+</ul>
+<p style="font-size:.88rem; color:var(--mut)">Before the drive up, check the
+<a href="https://www.ndbc.noaa.gov/station_page.php?station=46213">Cape
+Mendocino buoy</a> (height + period) and
+<a href="https://www.weather.gov/eka/">weather.gov/eka</a> for alerts. On the
+trail we judge by eye: swash reaching the base of the slope inside a window
+means it's a CAUTION day.</p>
+
+<h2 class="sect">Water</h2>
+<ul>
+  <li>Carry 1–1.5 L between creeks — they come every 1.5–3 miles.</li>
+  <li><b>Top off before each zone:</b> Sea Lion Gulch (Fri), Big Flat (Sun).</li>
+  <li>Fill ~50 yd upstream of creek mouths (brackish at the mouth). Brown
+      tannin tint is normal — filter and drink.</li>
+</ul>
+</div>
+<div>
+<h2 class="sect">Bail-out camps</h2>
+<div class="scrolls">
+<table class="ref">
+  <tr><th>Zone</th><th>Camps inside the zone</th></tr>
+  <tr><td>A · miles 4.5–8.5</td><td>Cooskie Creek (6.4)</td></tr>
+  <tr><td>B · miles 17.5–21.5</td><td>Shipman (~19.4) · Buck (~20.9)</td></tr>
+</table>
+</div>
+<p style="font-size:.88rem; color:var(--mut)">Caught by rising water mid-zone:
+<b>climb, don't run.</b> Get above the driftwood line and wait it out.</p>
+
+<h2 class="sect">Good to know</h2>
+<ul>
+  <li><b>Bear canister required</b> (BLM) — rangers check at Mattole. All food,
+      toiletries, and trash go in it at night.</li>
+  <li>Expect <b>no campfires</b> (September restrictions).</li>
+  <li><b>No cell signal</b> from Mattole until Black Sands. Tell your people:
+      check-in from Shelter Cove around noon Monday.</li>
+  <li>Marine layer soaks everything overnight — bring a pack towel, dry your
+      fly at lunch.</li>
+  <li>Boots + gaiters beat trail runners here; camp shoes are worth their
+      weight for the creek mouths.</li>
+</ul>
+</div>
+</div>
+
+<p class="foot">Window edges are estimates (±20 min) — the falling-tide rule is
+the real margin. The spring window decays through the trip: Friday has the
+deepest lows, Monday the weakest, which is exactly why the plan front-loads
+the miles and crosses most of zone B on Sunday evening.</p>
+</div>
+</html>
