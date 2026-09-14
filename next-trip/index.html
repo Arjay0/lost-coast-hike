@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Three ranked lists of backpacking trips, California to Patagonia, to read, star, and argue over.">
+<meta name="robots" content="noindex">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Next Trip Dossier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #f1f3ee;
+    --surface: #ffffff;
+    --ink: #17211c;
+    --ink-2: #3f4b45;
+    --muted: #5f6b65;
+    --rule: #cfd5ce;
+    --rule-soft: #e2e6df;
+    --spruce: #24483a;
+    --spruce-ink: #ffffff;
+    --blaze: #d4531c;
+    --blaze-soft: #fbe9df;
+    --star: #d4531c;
+    --chip: #e7ebe4;
+    --focus: #1f6feb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0f1613;
+      --surface: #172019;
+      --ink: #e8ece7;
+      --ink-2: #c3cbc4;
+      --muted: #97a39b;
+      --rule: #2c3831;
+      --rule-soft: #222d27;
+      --spruce: #1c3a2e;
+      --spruce-ink: #dfe9e2;
+      --blaze: #f0763f;
+      --blaze-soft: #3a2218;
+      --star: #f0763f;
+      --chip: #22302a;
+      --focus: #6ea8ff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0f1613;
+    --surface: #172019;
+    --ink: #e8ece7;
+    --ink-2: #c3cbc4;
+    --muted: #97a39b;
+    --rule: #2c3831;
+    --rule-soft: #222d27;
+    --spruce: #1c3a2e;
+    --spruce-ink: #dfe9e2;
+    --blaze: #f0763f;
+    --blaze-soft: #3a2218;
+    --star: #f0763f;
+    --chip: #22302a;
+    --focus: #6ea8ff;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .mono { font-family: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace; font-variant-numeric: tabular-nums; }
+  .display { font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif; }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding-inline: 20px; padding-block: 0 80px; }
+
+  /* masthead */
+  .mast {
+    background: var(--spruce);
+    color: var(--spruce-ink);
+  }
+  .mast .wrap { padding-block: 28px 30px; display: grid; gap: 14px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .mast h1 {
+    font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    font-weight: 800; font-size: clamp(44px, 7vw, 84px); line-height: 0.95;
+    margin: 0; letter-spacing: 0.005em; text-transform: uppercase; text-wrap: balance;
+  }
+  .mast p { margin: 0; max-width: 62ch; font-size: 17px; line-height: 1.5; }
+  .mast .stamp {
+    display: flex; flex-wrap: wrap; gap: 8px 22px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: 0.02em; opacity: 0.9;
+  }
+
+  /* layout */
+  .cols { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 32px; }
+  @media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 20px; } }
+
+  nav.side { position: sticky; top: 16px; display: grid; gap: 18px; }
+  @media (max-width: 860px) { nav.side { position: static; } }
+  nav.side .group { display: grid; gap: 6px; }
+  nav.side .label {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  }
+  nav.side a { text-decoration: none; font-size: 14.5px; color: var(--ink-2); padding: 3px 0; border-left: 2px solid transparent; padding-left: 10px; }
+  nav.side a:hover { color: var(--ink); border-left-color: var(--blaze); }
+  nav.side a .n { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); margin-right: 6px; }
+  @media (max-width: 860px) {
+    nav.side .group.trips { display: none; }
+    nav.side .group.lists { display: flex; flex-wrap: wrap; gap: 8px; }
+    nav.side .group.lists .label { width: 100%; }
+    nav.side .group.lists a { border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; background: var(--surface); }
+  }
+
+  .shortlist { border: 1px solid var(--rule); background: var(--surface); padding: 12px 14px; display: grid; gap: 8px; }
+  .shortlist .label { margin: 0; }
+  .shortlist ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
+  .shortlist li { display: flex; gap: 8px; align-items: baseline; }
+  .shortlist li .n { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); }
+  .shortlist .empty { font-size: 13.5px; color: var(--muted); margin: 0; }
+  .shortlist button {
+    font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+    background: var(--ink); color: var(--ground); border: 0; padding: 8px 12px; border-radius: 4px;
+  }
+  .shortlist button:disabled { opacity: 0.45; cursor: default; }
+  .shortlist textarea {
+    width: 100%; font: inherit; font-size: 13px; line-height: 1.4; min-height: 90px;
+    background: var(--ground); color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; padding: 8px;
+  }
+  .shortlist .hint { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+  main { min-width: 0; display: grid; gap: 56px; }
+
+  .howto {
+    border-top: 3px solid var(--blaze);
+    padding-top: 14px; display: grid; gap: 8px; max-width: 72ch;
+  }
+  .howto h2 { margin: 0; }
+  h2.sec {
+    font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    font-weight: 800; font-size: clamp(30px, 4.2vw, 44px); line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; margin: 0; text-wrap: balance;
+  }
+  h3.sub { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 22px; margin: 0; letter-spacing: 0.02em; text-transform: uppercase; }
+  .howto p, .list-intro p, .note p { margin: 0; max-width: 68ch; }
+  .howto ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; max-width: 68ch; }
+
+  section.list { display: grid; gap: 22px; }
+  .list-head { display: grid; gap: 10px; border-top: 3px solid var(--spruce); padding-top: 14px; }
+  .list-head .kicker { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+  table.sum { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; }
+  table.sum th, table.sum td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  table.sum th { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--ground); }
+  table.sum tr:last-child td { border-bottom: 0; }
+  table.sum td.n, table.sum td.m { font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+  table.sum td.name { font-weight: 600; }
+  table.sum td.name a { text-decoration: none; }
+  table.sum td.name a:hover { text-decoration: underline; }
+
+  .trips { display: grid; gap: 14px; }
+  article.trip {
+    background: var(--surface); border: 1px solid var(--rule);
+    display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0;
+  }
+  article.trip.starred { border-color: var(--blaze); box-shadow: inset 4px 0 0 var(--blaze); }
+  .trip .rank {
+    font-family: "IBM Plex Mono", monospace; font-size: 26px; font-weight: 500; color: var(--muted);
+    padding: 16px 0 0 16px; font-variant-numeric: tabular-nums;
+  }
+  .trip .body { padding: 16px 18px 16px 4px; display: grid; gap: 10px; min-width: 0; }
+  .trip .top { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; justify-content: space-between; }
+  .trip h3 {
+    font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    font-weight: 700; font-size: 27px; line-height: 1.05; margin: 0; letter-spacing: 0.005em; text-wrap: balance;
+  }
+  .trip h3 small { display: block; font-family: "Public Sans", sans-serif; font-weight: 400; font-size: 14px; color: var(--muted); letter-spacing: 0; margin-top: 3px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; line-height: 1;
+    background: var(--chip); color: var(--ink-2); padding: 6px 8px; border-radius: 3px; white-space: nowrap;
+  }
+  .chip b { font-weight: 500; color: var(--muted); margin-right: 4px; }
+  .chip.perm { background: var(--blaze-soft); color: var(--ink); }
+  .trip .why { margin: 0; max-width: 70ch; font-size: 15.5px; }
+  .trip ul { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 14.5px; color: var(--ink-2); max-width: 72ch; }
+  .trip .caveat { margin: 0; font-size: 14.5px; max-width: 72ch; padding-left: 12px; border-left: 3px solid var(--blaze); }
+  .trip .caveat b { color: var(--blaze); font-weight: 600; }
+  .star {
+    font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+    background: transparent; color: var(--ink-2); border: 1px solid var(--rule); padding: 6px 10px; border-radius: 4px;
+    display: inline-flex; gap: 6px; align-items: center; white-space: nowrap;
+  }
+  .star:hover { border-color: var(--ink); color: var(--ink); }
+  .star[aria-pressed="true"] { background: var(--blaze); border-color: var(--blaze); color: #fff; }
+  .star svg { width: 14px; height: 14px; fill: currentColor; }
+  @media (max-width: 520px) {
+    article.trip { grid-template-columns: 44px minmax(0, 1fr); }
+    .trip .rank { font-size: 20px; padding-left: 12px; }
+    .trip .body { padding-right: 14px; }
+  }
+
+  .note { border: 1px solid var(--rule); background: var(--surface); padding: 16px 18px; display: grid; gap: 10px; }
+  .note p { max-width: 72ch; }
+  .note ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; max-width: 72ch; }
+  .note.flag { border-left: 4px solid var(--blaze); }
+
+  .also { display: grid; gap: 6px; font-size: 14.5px; color: var(--ink-2); max-width: 72ch; }
+  .also p { margin: 0; }
+
+  table.cal { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 14.5px; }
+  table.cal th, table.cal td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  table.cal th { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--ground); }
+  table.cal td.when { font-family: "IBM Plex Mono", monospace; font-size: 13px; white-space: nowrap; }
+  table.cal tr.hot td { background: var(--blaze-soft); }
+
+  footer.src { font-size: 13px; color: var(--muted); max-width: 80ch; display: grid; gap: 6px; border-top: 1px solid var(--rule); padding-top: 14px; }
+  footer.src p { margin: 0; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .star, article.trip { transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease; }
+  }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <div class="eyebrow">Post-Lost-Coast planning · researched Sep 14, 2026</div>
+    <h1>Next Trip Dossier</h1>
+    <p>Lost Coast settled the pattern: leave San Francisco at 6:30, walking by 2:30, camp up before dark. That radius opens most of Northern California. Beyond it, the fly-to trips everyone names. Three ranked lists, one permit calendar, and a star button so we can argue about it in the group text.</p>
+    <div class="stamp">
+      <span>3 lists · 38 trips</span>
+      <span>~73 “best of” sources tallied</span>
+      <span>Group: 3 · pace 2 mph · 25–30 lb</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="cols">
+  <nav class="side" aria-label="Page navigation">
+    <div class="group lists">
+      <div class="label">Jump to</div>
+      <a href="#how">How to use this</a>
+      <a href="#ca">California, same-day camp</a>
+      <a href="#us">Continental US</a>
+      <a href="#world">Outside the US</a>
+      <a href="#calendar">2027 permit calendar</a>
+    </div>
+    <div class="group trips" id="trip-nav"></div>
+    <div class="shortlist" id="shortlist">
+      <div class="label">My shortlist</div>
+      <p class="empty" id="sl-empty">Star trips as you read. Your stars stay in this browser only, so paste the list into the group text when you're done.</p>
+      <ul id="sl-list"></ul>
+      <button type="button" id="sl-copy" disabled>Copy shortlist for the group text</button>
+      <textarea id="sl-text" hidden readonly aria-label="Shortlist text"></textarea>
+      <p class="hint" id="sl-hint" hidden></p>
+    </div>
+  </nav>
+
+  <main>
+    <section class="howto" id="how">
+      <h2 class="sec">How to use this</h2>
+      <p>Every list is ranked the same way: how often a trip shows up across a broad set of “best backpacking” articles, then whether it actually fits three people at 2 mph for 2–6 nights, then whether the permit is winnable. Numbers are quoted as the sources give them. Where sources disagree, the range is shown. Anything marked <em>unverified</em> gets checked before anyone books.</p>
+      <ol>
+        <li>Read the list that matters to you. Star anything you'd actually do.</li>
+        <li>Copy your shortlist from the left and drop it in the group text.</li>
+        <li>The calendar at the bottom is the constraint: the good US permits are decided between December and March.</li>
+      </ol>
+      <p>Where judgment overrode the raw tally: Point Reyes, Henry Coe, and Lost Coast topped the California count and were dropped on purpose (done, or too close to home for what this list is for). Wonderland tops the US count but the full loop is 9–14 days, so it's ranked as a section. Everest Base Camp and Kilimanjaro top the world count but are guided-only, so they're off; the Inca Trail is here as its self-supported cousin, Salkantay.</p>
+    </section>
+
+    <section class="list" id="ca">
+      <div class="list-head">
+        <div class="kicker">List 1 · 11 trips</div>
+        <h2 class="sec">California, drive from SF and camp the same day</h2>
+        <div class="list-intro"><p>On trail by about 2:30 after a 6:30 departure, which means 6.5 hours of driving with a food stop, a first camp inside 5 miles, and 2–4 nights. Sorted by mentions, then fit.</p></div>
+      </div>
+      <div class="tablewrap" id="ca-table"></div>
+      <div class="trips" id="ca-trips"></div>
+      <div class="also">
+        <p><strong>Not usable now.</strong> Big Basin / Skyline-to-the-Sea (trail camps closed through 2026). Mineral King (road construction from Sep 8, 2026). Ohlone Wilderness (permit discontinued Jan 2026, camps by phone). Marble Mountains Sky High Lakes (5.7 mi, no permit, but 6+ hours of driving).</p>
+      </div>
+    </section>
+
+    <section class="list" id="us">
+      <div class="list-head">
+        <div class="kicker">List 2 · 15 trips</div>
+        <h2 class="sec">Continental US, outside California</h2>
+        <div class="list-intro"><p>Fly-to trips of 3–6 nights. Zion, Bryce, and the Grand Canyon get their own note further down because they came up first.</p></div>
+      </div>
+      <div class="tablewrap" id="us-table"></div>
+      <div class="trips" id="us-trips"></div>
+      <div class="note flag" id="utah">
+        <h3 class="sub">Zion, Bryce, and the Grand Canyon</h3>
+        <p><strong>Grand Canyon</strong> earns its place at #3 and is the most-named single hike in America. The problem is timing: on August 29, 2026 a flash flood destroyed nearly all the footbridges on Bright Angel Creek and knocked out the Transcanyon Waterline. As of early September the North Kaibab below the trailhead, Phantom Ranch, Bright Angel and Cottonwood campgrounds, both river bridges, and the lower South Kaibab and Bright Angel trails are closed with no reopening date, and corridor permits are out of the lottery until further notice. The waterline project targets 2027. Grand Canyon Lodge burned in 2025, so the North Rim has no lodging. For 2027, plan a south-side route like Hermit–Tonto–Bright Angel unless the corridor reopens.</p>
+        <p><strong>Zion</strong> has no multi-night trip that any list names. The Trans-Zion Trek is a 48-mile, 5-day traverse from Lee Pass to the East Entrance with a shuttle between ends, and no list mentions it. The West Rim top-down is a one-nighter (16.2 mi, 3,156 ft of descent, 9 sites, water only at Cabin Spring). The Narrows top-down is 16 mi with a one-night maximum and closes above 120 CFS. Permits release in 3-month blocks on the 5th of Dec, Mar, Jun, and Sep at 10 am MT, half reservable, $20 + $7 a person a night, and go within minutes. Verdict: great park, not a top backpack.</p>
+        <p><strong>Bryce</strong> is the Under-the-Rim Trail: 22.9 mi, 5,500 ft, 2–3 days, 7 sites, carry your water. $10 a permit + $5 a person and among the least competitive permits in the park system. Two mentions. A good two-night add-on to a Utah week, not a destination.</p>
+      </div>
+    </section>
+
+    <section class="list" id="world">
+      <div class="list-head">
+        <div class="kicker">List 3 · 12 treks</div>
+        <h2 class="sec">Outside the continental US</h2>
+        <div class="list-intro"><p>4–8 nights, tent and food on our backs where the trail allows it. Alaska and Hawaii count as outside. Ranked by mentions, then by whether it can be done self-supported in a week.</p></div>
+      </div>
+      <div class="tablewrap" id="world-table"></div>
+      <div class="trips" id="world-trips"></div>
+      <div class="note">
+        <h3 class="sub">Not possible right now</h3>
+        <ul>
+          <li><strong>Chilkoot Trail:</strong> the international border at Chilkoot Pass remains closed to through travel, so it's out-and-back only on either side.</li>
+          <li><strong>Huemul Circuit (Argentina):</strong> 64–66 km over 4 days with two Tyrolean traverses that need a harness, in 100+ km/h wind. Outside what this group signed up for.</li>
+          <li><strong>Berg Lake (Mt Robson, BC):</strong> reopened in 2025 after the 2021 flood; 2 nights in, bookings open early December. A good add-on to a Rockies trip, not a destination trek.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h3 class="sub">Japan, for the November family trip</h3>
+        <p>The Kumano Kodo Nakahechi shows up on five lists: about 70 km over 5 days from Takijiri to Hongu to Nachi, well signed and self-guided, but inn-to-inn with meals, not a tent trip. Book through Kumano Travel 3–6 months ahead for autumn. Late November works, with highs around 50°F and lows in the mid-30s. A 3-day Takijiri-to-Hongu core fits a family schedule. The Japan Alps are not a November option; the huts and Kamikochi itself close by mid-month.</p>
+      </div>
+    </section>
+
+    <section class="list" id="calendar">
+      <div class="list-head">
+        <div class="kicker">Constraint</div>
+        <h2 class="sec">2027 permit calendar</h2>
+        <div class="list-intro"><p>Dates carried over from the 2026 cycles. Confirm each before relying on it. The highlighted rows are the ones that sell out in minutes.</p></div>
+      </div>
+      <div class="tablewrap">
+        <table class="cal">
+          <thead><tr><th>When</th><th>What opens</th></tr></thead>
+          <tbody>
+            <tr><td class="when">Oct 2026</td><td>Inca Trail 2027 permits (if ever wanted)</td></tr>
+            <tr><td class="when">Dec 5, 2026</td><td>Zion Jan–Mar block</td></tr>
+            <tr><td class="when">Dec 16 – Jan 1</td><td>Grand Canyon lottery for May 2027</td></tr>
+            <tr class="hot"><td class="when">~Jan 6, 2027</td><td><strong>Teton Crest Trail</strong> reservations, first Wednesday of January, 8 am MT. Gone within minutes.</td></tr>
+            <tr class="hot"><td class="when">late Jan 2027</td><td><strong>West Coast Trail</strong> reservations (2026 launch was Feb 5, 8 am PT, queue system)</td></tr>
+            <tr><td class="when">Feb 1</td><td>Havasupai sale</td></tr>
+            <tr><td class="when">Feb 10 – Mar 3</td><td>Wonderland Trail lottery</td></tr>
+            <tr class="hot"><td class="when">Feb 15</td><td><strong>Four Pass Loop</strong> (Apr–Jul dates) and <strong>Enchantments</strong> lottery open</td></tr>
+            <tr><td class="when">Mar 5</td><td>Zion Apr–Jun block</td></tr>
+            <tr class="hot"><td class="when">Mar 15</td><td><strong>Glacier</strong> lottery, applications accepted this one day</td></tr>
+            <tr><td class="when">Mar 16</td><td><strong>Thousand Island Lake</strong> permit drop for Sep 2027, 7 am PT</td></tr>
+            <tr><td class="when">~Mar 21</td><td>Yosemite lottery for September trips opens (24 weeks out)</td></tr>
+            <tr><td class="when">Apr 15</td><td>Olympic summer release</td></tr>
+            <tr><td class="when">Apr 25</td><td>Wonderland general sale</td></tr>
+            <tr><td class="when">Apr – Sep 2027</td><td>Torres del Paine 2027–28 inventory opens in stages across three portals</td></tr>
+            <tr><td class="when">May 1</td><td>Glacier general sale</td></tr>
+            <tr><td class="when">mid-May</td><td>New Zealand Great Walks 2027–28</td></tr>
+            <tr><td class="when">~early Jul 2027</td><td>Overland Track, Oct 2027 – May 2028 season</td></tr>
+            <tr><td class="when">rolling</td><td>Desolation, Rae Lakes, Ansel Adams, and Hoover 6 months out (Desolation has no quota after Sep 30) · Kalalau 90 days out · Paria 3 months out</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <h3 class="sub">Two things that fall out of all this</h3>
+        <ul>
+          <li><strong>This fall:</strong> Desolation Wilderness loses its quota on September 30. Lake Aloha is the easy October trip if we want one.</li>
+          <li><strong>2027:</strong> if Teton Crest is the target, the reservation window is the first Wednesday of January and it is gone in minutes. The plan needs the walk-up fallback (two thirds of sites are walk-up, issued the day before in Jackson) and Cirque of the Towers as plan B on the same flight.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="src">
+      <p><strong>Sources.</strong> California: 25 list articles (7x7, The Wild Guides, Exploring Wild, The Outbound, Trees &amp; Tents, SF Chronicle, Modern Hiker, and others) plus NPS, USFS, Ventana Wilderness Alliance, and Caltrans pages. US: 24 lists (The Big Outside, Outside, National Geographic, The Dyrt, 10Adventures, Wildland Trekking, The Trek, Moon, and others) plus NPS permit, food-storage, and conditions pages for each park. Abroad: 24 lists (Outside, National Geographic, Much Better Adventures, Wildland, 57hours, Time Out, Lonely Planet, and others) plus CONAF/Vertice/Las Torres, Ferðafélag Íslands, DOC New Zealand, Parks Tasmania, and Parks Canada pages. Full source list lives in the vault file this page was built from.</p>
+    </footer>
+  </main>
+</div>
+</div>
+
+<script>
+(function () {
+  const TRIPS = [
+    { id: "yosemite", list: "ca", rank: 1, name: "Yosemite high country from Tuolumne", sub: "Cathedral Lakes, Sunrise Lakes, Clouds Rest",
+      meta: [["Drive", "~4 h 40"], ["Mentions", "11 park · 5 Tuolumne"], ["Season", "Jun–Oct"]], permit: "Lottery 24 weeks out · hard",
+      why: "This is the Yosemite most visitors never see: the high country above 8,000 ft, where granite domes sit in meadows and the crowds thin out a mile from the road. Cathedral Lakes puts you at the foot of Cathedral Peak, one of the most photographed spires in the Sierra, with a swimmable lake and slab to wander at sunset. Clouds Rest from the Sunrise side is the best view in the park, straight down 5,000 ft to the Valley with Half Dome below you, and as backpackers we reach it before the day hikers. If you want to know what the Sierra is about, this is the standard everything else gets measured against.",
+      facts: [
+        "Trailheads on Tioga Road: Cathedral Lakes, Sunrise Lakes at Tenaya Lake, Dog Lake for Young Lakes, Ten Lakes. About 4 h 39 and 211 miles to Tuolumne.",
+        "Round trips per NPS: Cathedral Lakes 7 mi, Sunrise Lakes 6.8, Clouds Rest 14, Young Lakes 13.6, Glen Aulin 12.6. First camp: Lower Cathedral Lake ~3.5 mi, first Sunrise Lake 3.2 mi.",
+        "Shape for 2–4 nights: Sunrise Lakes → Clouds Rest → Sunrise, or Cathedral → Sunrise → Tenaya with a car shuttle along Tioga.",
+        "Permit: 60% of each trailhead's quota goes through a weekly lottery starting 24 weeks ahead; 40% drops seven days ahead at 7 am. $10 an application + $5 a person. July odds around 20%; Cathedral Lakes is one of the hardest draws.",
+        "Bear canister required. Tioga Road open roughly late May to Oct or Nov."
+      ],
+      caveat: "The permit, Cathedral crowds, a fall storm can close Tioga, and 8–10k ft on day one." },
+    { id: "desolation", list: "ca", rank: 2, name: "Desolation Wilderness", sub: "Echo Lakes → Tamarack → Lake Aloha",
+      meta: [["Drive", "~3 h 20"], ["Mentions", "7"], ["Season", "Jul–early Oct"]], permit: "6-month rolling · no quota after Sep 30",
+      why: "Desolation is 64,000 acres of bare granite and 130 lakes on the ridge west of Tahoe, and it is the closest place to SF that feels like the High Sierra. Lake Aloha is the centerpiece: a mile-wide sheet of water broken by hundreds of granite islands under Pyramid Peak, in a basin so open you can wander off trail for hours. The pace is what we did on the Lost Coast: walk when you want, swim, sit on a slab. After September 30 there is no permit fight at all, which makes it the fall trip.",
+      facts: [
+        "Echo Lakes trailhead on Hwy 50. Alternatives: Eagle Falls → Velma Lakes (4.5 mi, 1,600 ft); Meeks Bay → Genevieve (4.5 mi) or Crag Lake (5 mi).",
+        "Echo to Aloha 12.4 mi round trip, 1,756 ft: 2.5 miles along the Echo Lakes (or the water taxi), then 3.5 miles to Aloha with about 600 ft. First camp: Tamarack Lake, 3.7 mi in.",
+        "Permit: recreation.gov, rolling 6-month window at 7 am PT. Quota runs the Friday before Memorial Day through September 30. $5 a person for one night, $10 for 2–14 nights, plus $6. Aloha zone: 36 people a day, 25 reservable; summer weekends go 5–6 months out. Permit still required year-round, no quota from October 1.",
+        "Bear canister required."
+      ],
+      caveat: "Exposed and windy at Aloha. One source says no shoreline camping at Aloha itself (unverified)." },
+    { id: "trinity", list: "ca", rank: 3, name: "Trinity Alps", sub: "Canyon Creek Lakes",
+      meta: [["Drive", "~5 h 20"], ["Mentions", "7"], ["Season", "Jul–Oct"]], permit: "Free self-issue · no quota",
+      why: "The Trinities are the Sierra's quieter cousin in the far north: white granite, glacier-carved canyons, a fraction of the people, and no quota on the permit. Canyon Creek is the classic way in, a creek valley that climbs past a series of waterfalls to two big lakes under Thompson Peak, the highest point in the range, with Wedding Cake and Sawtooth Peak behind. The Lower Lake has flat granite camps at the water's edge. It is the trip for when the Sierra permits are gone and you still want the granite.",
+      facts: [
+        "Weaverville is 4 h 37 and 260 miles, then about 40 minutes of paved road to the trailhead.",
+        "7–8 mi and 2,600–2,942 ft to Lower Canyon Creek Lake (sources vary). Creekside camps on the way, McKay Camp and Upper Canyon Creek Meadows, keep day one under 5 miles.",
+        "Permit: free self-issue, groups of 10 or fewer. Bear canister required in the Canyon Creek and Swift Creek drainages through 2028. No fires at the lakes.",
+        "Stretch option: the Four Lakes Loop via Long Canyon, 17–20 mi and about 6,000 ft, with a brutal first day of 5 mi and 3,700 ft to Bee Tree Gap."
+      ],
+      caveat: "The drive, and smoke season in late summer." },
+    { id: "emigrant", list: "ca", rank: 4, name: "Emigrant Wilderness, Gianelli Cabin side", sub: "Powell Lake, Chewing Gum Lake, Y Meadow Lake",
+      meta: [["Drive", "~3 h 45"], ["Mentions", "7"], ["Season", "Jun–Oct"]], permit: "Free self-issue · no quota",
+      why: "Emigrant is 113,000 acres of granite slab and shallow lakes just north of Yosemite, and it may be the single best match for how we like to walk: bench after bench of open rock with a lake tucked in every fold, so you can leave the trail and go where you want. From Gianelli Cabin the first lake is 2 miles in and there are a dozen more within a day's reach. Permits are free and unlimited, there is no canister rule, and the drive is under 4 hours. Roger's Hyatt Lake trip was on the Crabtree side of this wilderness; the Gianelli side is the half we haven't seen.",
+      facts: [
+        "Gianelli Cabin trailhead above Pinecrest (Hwy 108, Crabtree Road). Powell Lake 2.3 mi, Chewing Gum Lake 4.1, Y Meadow Lake 6.4; Toejam, Upper Relief, and the Granite Dome country beyond for a longer loop.",
+        "Permit: free, unlimited, self-issue at the kiosk or the Summit Ranger Station. Bear canisters not required in Emigrant (hang or canister recommended). Campfires allowed below 9,000 ft outside fire restrictions.",
+        "Terrain is the point: open granite benches at 8,000–9,000 ft with lakes every mile, cross-country friendly, few brushy sections."
+      ],
+      caveat: "Mosquitoes through mid-July; the lakes are shallow and warm by August, which is the upside. Lower and less dramatic than Yosemite's peaks." },
+    { id: "sykes", list: "ca", rank: 5, name: "Big Sur, Pine Ridge Trail to Sykes Hot Springs", sub: "Ventana Wilderness",
+      meta: [["Drive", "~2 h 45"], ["Mentions", "11"], ["Season", "Oct–May"]], permit: "None",
+      why: "Sykes is the Big Sur backpack: the Pine Ridge Trail climbs from Hwy 1 into the redwood canyons of the Ventana Wilderness and drops to the Big Sur River, where a chain of swimming holes and a set of natural hot spring pools sit just below camp. The trail was closed for five years after the 2016 fire and 2017 slides and only reopened in 2021, so it is back to being the fall and spring trip when the Sierra is under snow. It is the one place on this list where you can swim in a warm river in November.",
+      facts: [
+        "Pine Ridge trailhead at Big Sur Station on Hwy 1.",
+        "20–23 mi round trip; gain quoted anywhere from 7,339 to 7,847 ft. Camps: Ventana at 4.5 mi (a drop and a climb back out), Terrace Creek at 5, Barlow Flat at 7, Sykes at 9–10.",
+        "Status Sep 2026: trail open. The February 2026 landslide at mile 1.7 was cleared and is passable with caution. Campfires banned at backcountry camps Jun 4, 2026 to Jan 31, 2027. Hwy 1 at Regent's Slide reopened Jan 14, 2026 with occasional full closures after storms.",
+        "No wilderness permit. California campfire permit for stoves. Day-use or parking fee at the station (current amount unverified)."
+      ],
+      caveat: "Brushy chaparral and poison oak, the Barlow Flat river crossing after rain, and Sykes crowds. The opposite of granite slab." },
+    { id: "raelakes", list: "ca", rank: 6, name: "Rae Lakes Loop", sub: "Kings Canyon National Park",
+      meta: [["Drive", "~5 h 45 to Road's End"], ["Mentions", "5"], ["Season", "Jul–early Oct"]], permit: "recreation.gov, 6 months out · competitive",
+      why: "The Rae Lakes Loop is the Sierra classic: 41 miles from Road's End in Kings Canyon up Paradise Valley past Mist Falls, over 11,978-ft Glen Pass, and back down Bubbs Creek, with the Rae Lakes themselves, a chain of three blue lakes under the Painted Lady and Fin Dome, as the midpoint. It is the single most recommended loop in California because every day is different, every camp is at water, and you finish where you started with no shuttle. The catch is that it's a 5-day trip at our pace and the permit is competitive.",
+      facts: [
+        "41.4 mi, about 7,000 ft of gain, high point Glen Pass 11,978 ft. Counter-clockwise (up Paradise Valley, down Bubbs Creek) puts the pass on day 3 and the descent on fresh knees. 4 nights at 8–10 mi a day.",
+        "First camp: Sphinx Creek (clockwise, ~4 mi) or Lower Paradise Valley (counter-clockwise, ~7 mi); Paradise Valley camps are designated with a two-night limit. Rae Lakes camps have a one-night limit each.",
+        "Permit: recreation.gov, released 6 months ahead at 7 am PT for the Woods Creek / Bubbs Creek trailheads; summer weekends go on release day. Bear canister required. Cedar Grove has a store and showers for the last night.",
+        "Drive: Road's End is about 290 mi via Fresno and Hwy 180; the last 30 miles are slow canyon road. 5 h 45 is realistic, at the edge of the radius."
+      ],
+      caveat: "A 5-day trip, not a weekend, and the permit is one of the harder Sierra draws. Glen Pass holds snow into July in a big year." },
+    { id: "anseladams", list: "ca", rank: 7, name: "Ansel Adams Wilderness", sub: "Thousand Island Lake, Garnet Lake, Ediza and the Minarets",
+      meta: [["Drive", "~5 h 30 to Agnew Meadows"], ["Mentions", "5"], ["Season", "Jul–early Oct"]], permit: "recreation.gov, Inyo quota · Mar 16 drop for Sep 2027",
+      why: "Thousand Island Lake under Banner Peak is the picture on half the Sierra calendars, and Garnet Lake, Ediza Lake, and the Minarets are the next valleys over. This is the most dramatic skyline in the Sierra outside Yosemite Valley: black volcanic peaks standing over granite, lakes at 9,800 ft, the John Muir Trail running through the middle of it. From Agnew Meadows above Mammoth the River Trail reaches Thousand Island in about 8 miles, or Shadow Creek reaches Ediza in under 7. Roger already has this pencilled in for September 2027.",
+      facts: [
+        "Agnew Meadows above Mammoth (Reds Meadow Road; mandatory shuttle 7 am–7 pm in peak summer, drive in before 7). River Trail to Thousand Island Lake ~8 mi and 1,500 ft; Shadow Creek to Ediza Lake 6.7 mi and 1,800 ft; a loop back on the JMT past Garnet and Shadow Lakes makes 17 mi.",
+        "First camp under 5 mi is the squeeze: Olaine Lake is 2 mi in on the River Trail but unremarkable; most groups push to Thousand Island or Ediza on day one. Camping is banned at Shadow Lake and within a quarter mile of Thousand Island's outlet.",
+        "Permit: recreation.gov, Inyo National Forest, quota by trailhead (30 a day on the River Trail), released 6 months ahead at 7 am PT. Bear canister required. No campfires.",
+        "Roger's existing plan: Sep 16–18, 2027, permit drop March 16 at 7 am. Group of three would need the headcount on the permit."
+      ],
+      caveat: "The shuttle rules, the quota, and 9,800 ft on night one. The Reds Meadow Road reconstruction changed access in 2026; confirm the regime for 2027." },
+    { id: "carson", list: "ca", rank: 8, name: "Carson Pass, Fourth of July Lake", sub: "via Winnemucca and Round Top",
+      meta: [["Drive", "~3 h 30 (unverified)"], ["Mentions", "2"], ["Season", "Jun–Oct"]], permit: "14 sites a day · in person, first come",
+      why: "Carson Pass is the Sierra in miniature: a 3-hour drive, a 2.5-mile walk to Winnemucca Lake under Round Top, and the best wildflower meadows in the range in July. Fourth of July Lake sits in a bowl 1,000 ft below the ridge with nobody around, because only six people a day can camp there. Round Top at 10,381 ft is a walk-up summit from camp with Lake Tahoe on one side and the Mokelumne canyon on the other. It is the trip for a Friday-to-Sunday when we want easy miles and big scenery.",
+      facts: [
+        "Carson Pass trailhead on Hwy 88. Winnemucca at 2.5 mi, Round Top, then Fourth of July Lake at 5.6 mi and 1,191 ft.",
+        "Permit: only 14 designated sites a day (3 Winnemucca, 5 Round Top, 6 Fourth of July), issued in person first-come at the Carson Pass Information Station, Memorial Day to Labor Day. Two-night limit at Winnemucca and Round Top, three at Fourth of July. No permit fee, $5 parking. No canister rule listed."
+      ],
+      caveat: "So few sites that a Saturday means being at the station when it opens. Short trip by design." },
+    { id: "hoover", list: "ca", rank: 9, name: "Hoover Wilderness, Twin Lakes to Barney and Peeler", sub: "Eastern Sierra, Yosemite boundary",
+      meta: [["Drive", "~5 h via Sonora Pass"], ["Mentions", "3"], ["Season", "Jul–Oct"]], permit: "6-month rolling · 50 a day",
+      why: "Hoover is the eastern back door to Yosemite's north country: Robinson Creek runs up from Twin Lakes through aspen groves into a granite canyon under the Sawtooth Ridge, whose jagged skyline of the Incredible Hulk and Matterhorn Peak is the most alpine-looking thing in the range. Barney Lake at 4 miles has a sandy beach ringed by cliffs; Peeler Lake at 9 sits right on the crest at 9,500 ft and drains both directions. Early October aspen color is the reason people come. Yosemite scenery, half the permit fight.",
+      facts: [
+        "Twin Lakes / Mono Village outside Bridgeport. About 5 hours via Sonora Pass by estimate; one source says 4. Sonora Pass opened April 30 this year.",
+        "Barney Lake at 3.7–4.5 mi and 1,173 ft; Peeler Lake around 9 mi; Kerrick Meadow beyond.",
+        "Permit: quota of 50 a day, 25 reservable on a 6-month rolling window, half released 3 days out. Bear canister required. $10 flat parking at Mono Village. One night maximum within a quarter mile of Barney."
+      ],
+      caveat: "The drive sits at the edge of the radius, and Barney is popular." },
+    { id: "hetchhetchy", list: "ca", rank: 10, name: "Hetch Hetchy, Rancheria Falls", sub: "Yosemite's year-round side",
+      meta: [["Drive", "~3 h 50"], ["Mentions", "1"], ["Season", "Year-round"]], permit: "Yosemite lottery · easier draw",
+      why: "Hetch Hetchy is Yosemite's flooded twin: the same granite walls and waterfalls as the Valley, a reservoir where the meadow should be, and almost nobody. The trail runs along the cliff above the water past Tueeulala and Wapama Falls, which in spring roar right over the footbridges, to a camp on Rancheria Creek with slabs and swimming pools. At 3,800 ft it is open in March when the rest of the park is under snow, and the flowers and waterfalls peak in April. It is the answer to \"what can we do in spring.\"",
+      facts: [
+        "Hetch Hetchy entrance, 3 h 49 and 224 miles. Gate hours 7 am to 9 pm from May 1 to Labor Day.",
+        "6.5 mi and 835 ft to the Rancheria Falls camp.",
+        "Permit: the same Yosemite lottery, but Rancheria is a far easier draw than Cathedral. Bear canister required."
+      ],
+      caveat: "Hot in summer, buggy in spring. One mention in the tally, but a strong shoulder-season pick." },
+    { id: "lassen", list: "ca", rank: 11, name: "Lassen, Cluster Lakes loop", sub: "Lassen Volcanic National Park",
+      meta: [["Drive", "~4 h 30"], ["Mentions", "2"], ["Season", "Jul–Oct"]], permit: "recreation.gov 90-day · unlimited",
+      why: "Lassen is the volcanic Sierra: a park built around a plugged volcano that erupted in 1915, with steaming fumaroles, lava beds, cinder cones, and a dozen forested lakes on a plateau above 6,500 ft. The Cluster Lakes loop strings Twin Lakes, the Cluster Lakes, and Big Bear Lake together on a nearly flat trail with Lassen Peak in view, and the summit hike makes a good day trip on the way out. The permit is unlimited and the first camp is a mile in, so it is the lowest-friction trip on the list and a landscape unlike anything else here.",
+      facts: [
+        "Summit Lake trailhead, about 250 miles.",
+        "10.8-mile loop with 635 ft of total gain per NPS. Little Bear Lake about a mile in; Twin Lakes as an alternative.",
+        "Permit: recreation.gov, 90-day rolling, unlimited, $6 + $5 a person. Bear canister required."
+      ],
+      caveat: "Mosquitoes early in the season, and it isn't granite." },
+
+    { id: "teton", list: "us", rank: 1, name: "Teton Crest Trail", sub: "Grand Teton National Park, Wyoming",
+      meta: [["Airport", "JAC, nonstop from SFO"], ["Mentions", "13"], ["Season", "late Jul–early Sep"]], permit: "Early January · hardest in the park system · ⅔ walk-up",
+      why: "The Teton Crest Trail runs the length of the Teton Range on its high west side, from the Jackson Hole tram to String Lake, staying above 9,000 ft almost the whole way. Death Canyon Shelf, a mile-long limestone bench with the Grand Teton across the valley; Alaska Basin; Hurricane Pass looking straight at the Grand; and the Paintbrush Divide finish are the set pieces. Wildflowers in late July are the best in the Rockies, and moose and bears are regular company. It is the trip the most sources agree on, and the one with the cleanest logistics: a 2-hour flight and a 20-minute drive.",
+      facts: [
+        "39 miles, with routes from 35 to 45 depending on trailheads. 8,061 ft of ascent, 7,576 of descent. Point to point, south to north: Teton Village tram or Phillips Pass to String Lake via Paintbrush Canyon. 3–5 nights at 8–10 miles a day.",
+        "Permit: recreation.gov. 2026 reservations opened January 7 at 8 am MT, the first Wednesday of January; the 2027 date is unverified. $20 + $7 a person a night. Only about a third of sites are reservable and the Crest zones book for the entire season within minutes. About two thirds are walk-up, issued one day before at the Craig Thomas visitor center; arrive 1–2 hours before opening with alternates.",
+        "Shuttle required. Bear canister mandatory below 10,000 ft with free loaners. Bear spray. Snow on the passes until late July."
+      ],
+      caveat: "The hardest reserved permit in the park system; the walk-up route means a buffer day in Jackson. Almost all of it is above 9,000 ft. Death Canyon trailhead was closed for 2026 construction; 2027 unverified." },
+    { id: "glacier", list: "us", rank: 2, name: "Glacier National Park", sub: "North Circle loop, or the Gunsight Pass Trail",
+      meta: [["Airport", "FCA, Kalispell"], ["Mentions", "8"], ["Season", "mid-Jul–mid-Sep"]], permit: "One-day lottery Mar 15 · ~30% walk-up",
+      why: "Glacier is the Crown of the Continent: Rocky Mountain scenery at its most Alpine, with thousand-foot glacier-carved walls, turquoise lakes, and grizzlies and mountain goats on the trail. The North Circle strings Many Glacier, Stoney Indian Pass, Fifty Mountain, and the Highline Trail along the Garden Wall into a week-long loop that visits the best of the park with no shuttle. Gunsight Pass is the 2-night version: Gunsight Lake, the pass with its goats, Lake Ellen Wilson, and Sperry Glacier country, ending at Lake McDonald. It is the place where the scenery justifies the lottery.",
+      facts: [
+        "North Circle from Many Glacier: a 52–55 mile loop with roughly 12,000 ft of climbing, 5–6 days at about 9 miles a day. Gunsight Pass Trail: a 20–22 mile traverse with 2,000–3,000 ft, 2 nights, both ends on the free park shuttle.",
+        "Permit: recreation.gov lottery. In 2026 applications were accepted on March 15 only, $10, 3,000 reservations, booking March 21 to April 30; general sale May 1 at 8 am MT. $7 a person a night. About 30% of sites held for walk-up the day before or day of. Advance itineraries capped at 16 miles a day.",
+        "Food: bear poles or lockers at all 63 backcountry camps, so hang everything scented. Bear spray is essential; this is grizzly country."
+      ],
+      caveat: "Grizzlies, Many Glacier road congestion, and the lottery assigns campsites so day lengths can be uneven. Ahern Drift can hold snow into early season." },
+    { id: "grandcanyon", list: "us", rank: 3, name: "Grand Canyon", sub: "Rim to rim, or the Hermit–Tonto–Bright Angel loop",
+      meta: [["Airport", "FLG · PHX · LAS"], ["Mentions", "13 (rim-to-rim 7)"], ["Season", "Mar–May, Oct–Nov"]], permit: "Monthly lottery 4 months out",
+      why: "Walking rim to river to rim is the one hike in America that reorganizes your sense of scale: 6,000 ft down through two billion years of rock, a night by the Colorado, and the climb back out. The Hermit–Tonto loop is the quieter version: the Tonto platform runs along the top of the inner gorge for days with the river below you and the walls above, and camps at Hermit Creek and Monument Creek. Spring and fall only; in summer the inner canyon is over 100°F. Nothing else on this list is a canyon, and nothing else is this famous for a reason. Third only because of what happened this summer; see the note below the list.",
+      facts: [
+        "Rim to rim via North Kaibab and Bright Angel: 24 miles, 2–3 nights; North Kaibab is 14 miles and 6,000 ft down. Trans-Canyon Shuttle $120 a person, 4.5–5 hours, May 15 to Nov 15. For a 2 mph group wanting 3–4 nights: the Hermit–Tonto–Bright Angel loop needs only the rim bus, or the harder Escalante Route (30–32 mi with class 3–4 scrambling).",
+        "Permit: recreation.gov monthly lottery 4 months ahead, apply the 16th through the 1st, 750 winners get booking windows. $10 + $15 a person a night. About 20% walk-up one day prior. Corridor camps two-night maximum in season.",
+        "Food: metal ammo boxes at the corridor camps; rodent-proof storage elsewhere. No bears."
+      ],
+      caveat: "The August 29, 2026 flood closed the corridor with no reopening date. Plan a south-side route for 2027 unless that changes." },
+    { id: "wonderland", list: "us", rank: 4, name: "Wonderland Trail, as a 4–5 night section", sub: "Mount Rainier National Park, Washington",
+      meta: [["Airport", "SEA, 2–2.5 h to trailheads"], ["Mentions", "14"], ["Season", "late Jul–Sep"]], permit: "Lottery Feb–Mar · sections are gettable",
+      why: "The Wonderland Trail circles Mount Rainier, 93 miles around a 14,410-ft volcano, crossing every major river that pours off its glaciers. Each day the mountain is in front of you from a different side: Spray Park's flower meadows, Sunrise's view of the Emmons Glacier, Indian Bar, Summerland. A section from Mowich Lake to Sunrise gives you the northern half, the most spectacular part, in four or five nights. Nothing in the lower 48 puts a glaciated peak this close for this long, which is why it tops the tally; the full loop is 9–14 days, so it ranks here as a section.",
+      facts: [
+        "Sections: Mowich Lake to Sunrise via Spray Park is 22 miles over two days; a 4–5 night section runs 35–45 miles at about 3,000 ft a day. Point to point needs a car or commercial shuttle (verify).",
+        "Permit: the 2026 early-access lottery ran Feb 10 to Mar 3 ($6), results Mar 14, booking from Mar 21; general sale April 25 for June 1 to Oct 10. Full-loop odds around 4%, but NPS says sections are far more attainable. $6 + $12 a person a night. About a third of sites walk-up.",
+        "Bear poles at all camps; canister recommended, Ursack allowed."
+      ],
+      caveat: "Relentless up and down, and Cascade rain even in August." },
+    { id: "cirque", list: "us", rank: 5, name: "Cirque of the Towers loop", sub: "Wind River Range, Wyoming",
+      meta: [["Airport", "JAC ~3 h · SLC ~5 h"], ["Mentions", "7"], ["Season", "Jul–Sep"]], permit: "None",
+      why: "The Cirque of the Towers is a horseshoe of granite spires, Pingora, Warbonnet, Wolf's Head, rising 1,500 ft straight out of Lonesome Lake, and it is the most photographed spot in the Wind River Range, the range climbers call the best granite in America. The loop from Big Sandy goes over Jackass Pass into the Cirque, camps under the towers, then crosses Texas Pass into the Shadow Lake basin on the far side. No permit, no lottery, no shuttle. If the Teton permit fails, this is the trip we take instead, on the same flight.",
+      facts: [
+        "Big Sandy trailhead at the end of 27 miles of dirt road. A 25-mile loop gaining about 3,900 ft over Texas Pass at 11,434 ft. 3–4 nights with two in the Cirque. Titcomb Basin is the alternative: 30 miles out and back from Elkhart Park.",
+        "No permit. Food storage order: hang properly or use a canister; above treeline that means a canister in practice, with rentals at the Pinedale ranger office."
+      ],
+      caveat: "Popular, Texas Pass is steep and loose on an unofficial trail, July mosquitoes, and lightning above treeline." },
+    { id: "fourpass", list: "us", rank: 6, name: "Four Pass Loop", sub: "Maroon Bells-Snowmass, Colorado",
+      meta: [["Airport", "ASE · DEN ~4 h"], ["Mentions", "4"], ["Season", "Jul–Sep"]], permit: "Feb 15 and Jun 15 releases · sells out in minutes",
+      why: "The Four Pass Loop circles the Maroon Bells, the two most photographed peaks in Colorado, over four passes above 12,400 ft: West Maroon, Frigid Air, Trail Rider, and Buckskin. Every pass drops you into a different basin of wildflowers with the Bells in view from three sides, and the aspens in the Snowmass valleys turn gold in late September. Three or four days, a loop, and the highest-altitude trip on this list. Arguably a better 3-night fit than a Wonderland section if a loop matters.",
+      facts: [
+        "26 miles, 7,752 ft.",
+        "Permit: recreation.gov on Feb 15 for April–July dates and Jun 15 for August–November, 8 am MT, $10 a person a night + $6. Bear canister mandatory. Maroon Lake parking and shuttle rules apply."
+      ],
+      caveat: "All above 10,000 ft with passes at 12,500, which is real altitude for a sea-level group. Afternoon lightning." },
+    { id: "sawtooths", list: "us", rank: 7, name: "Sawtooth Wilderness, Alice-Toxaway loop", sub: "Idaho",
+      meta: [["Airport", "BOI, 2 h 45 to Stanley"], ["Mentions", "6"], ["Season", "Jul–Sep"]], permit: "Free self-issue",
+      why: "The Sawtooths are Idaho's answer to the Tetons: jagged granite over 300 alpine lakes with a fraction of the visitors and no permit quota. The Alice-Toxaway loop climbs from Pettit Lake to Alice Lake under El Capitan, crosses Snowyside Pass at 9,400 ft, and comes back by Toxaway Lake, all in 19 miles with a lake camp every night. Stanley, the trailhead town, has hot springs and a population of about a hundred.",
+      facts: [
+        "Alice-Toxaway is 18.8 miles and 3,139 ft over 2–3 nights. The Big Outside's 36-mile, 5-day core traverse is the fuller trip.",
+        "Permit: free self-issue."
+      ],
+      caveat: "Short unless extended, and wildfire smoke some years." },
+    { id: "paria", list: "us", rank: 8, name: "Paria Canyon and Buckskin Gulch", sub: "Utah / Arizona",
+      meta: [["Mentions", "4"], ["Season", "Mar–May, Oct–Nov"]], permit: "Rolling, 3 months out · 20 a day",
+      why: "Paria Canyon is the longest slot canyon walk in the world: 38 miles of sandstone narrows opening into a canyon of 1,000-ft walls, springs, hanging gardens, and petroglyphs, walking in the river the whole way. Buckskin Gulch, the side canyon, is 13 miles of slot never more than a few feet wide. Nothing on this list looks like it, and it fits a 2 mph group because you are wading, not climbing.",
+      facts: [
+        "Listed at 21–51 miles depending on the Buckskin add-on.",
+        "Permit: rolling first-come, released 3 months ahead on the 1st at noon MT, $5 a person a day, 20 people a day. Spring dates sell out fast on release day."
+      ],
+      caveat: "Flash-flood exposure: the trip is governed by the forecast, not the calendar. Wet feet all day." },
+    { id: "olympic", list: "us", rank: 9, name: "Olympic National Park", sub: "High Divide loop, or the wilderness coast",
+      meta: [["Airport", "SEA"], ["Mentions", "10 as a park"], ["Season", "mid-Jul–Sep"]], permit: "recreation.gov Apr 15",
+      why: "Olympic is three parks in one: glaciated peaks, temperate rainforest, and 70 miles of wilderness coast. The High Divide loop climbs through the Sol Duc rainforest to the Seven Lakes Basin and runs a ridge with Mount Olympus and its glaciers across the Hoh valley, black bears in the huckleberries. The coast route is beach walking between headlands you round only at low tide, past sea stacks and tide pools, with ropes and ladders over the points. Two very different trips, and both count.",
+      facts: [
+        "High Divide: 18.2 miles, 3,050 ft, canister required. Coast north route: about 20 miles, tide-dependent.",
+        "Permit: recreation.gov summer release April 15 at 7 am PT, $8 a person a night + $6."
+      ],
+      caveat: "Each is short for 3–6 nights unless you stack both. Rain." },
+    { id: "enchantments", list: "us", rank: 10, name: "The Enchantments thru-hike", sub: "Alpine Lakes Wilderness, Washington",
+      meta: [["Airport", "SEA"], ["Mentions", "4"], ["Season", "Jul–early Oct"]], permit: "Lottery Feb 15–Mar 1 · ~2%",
+      why: "The Enchantments are a basin of granite, larches, and a chain of lakes so blue and so high that the place looks Photoshopped, with mountain goats everywhere. Aasgard Pass is the entrance, 2,000 ft in a mile and a half, and then it is a walk down through the Core Zone lake by lake. In the first week of October the larches turn gold. The lottery is the second hardest in the country, which is the only reason it isn't near the top.",
+      facts: [
+        "Permit: Core Zone overnight lottery Feb 15 to Mar 1, around 2% (358 of 18,835 applications in the 2019 data). $6 entry + $5 a person a day. Leavenworth shuttles run between trailheads."
+      ],
+      caveat: "Better as a 2-night if you win the lottery, and a brutal day hike if you don't." },
+    { id: "havasupai", list: "us", rank: 11, name: "Havasupai (Havasu Falls)", sub: "Arizona",
+      meta: [["Airport", "LAS ~4 h"], ["Mentions", "5"], ["Season", "Feb–Nov"]], permit: "Feb 1 sale · fixed 3 nights · $455",
+      why: "Havasupai is the turquoise waterfalls: Havasu, Mooney, and Beaver Falls pouring blue-green water over red travertine in a side canyon of the Grand Canyon on the Havasupai reservation. The 10-mile walk in is the price of admission, and then it is three days of swimming and waterfalls from a single camp. It is a base camp and a spectacle rather than a trek, and the most expensive permit on the list.",
+      facts: [
+        "Fixed 3 nights / 4 days at $455 a person. The 2026 sale opened February 1 with early access January 21 for $40 more. No transfers; 50% refund only 90+ days out."
+      ],
+      caveat: "The price and the sale-day race. Monsoon July through September." },
+    { id: "isleroyale", list: "us", rank: 12, name: "Isle Royale, Greenstone Ridge", sub: "Michigan",
+      meta: [["Mentions", "8"], ["Season", "Jun–Sep"]], permit: "Free on arrival",
+      why: "Isle Royale is an island wilderness in Lake Superior with more moose than people, reached by ferry or seaplane. The Greenstone Ridge runs the spine of the island 40 miles end to end through boreal forest, with inland lakes and Superior on both sides. It is the least-visited national park in the lower 48 and the one where you may hear wolves at night.",
+      facts: ["Access is a ferry or seaplane on top of two flights from San Francisco."],
+      caveat: "Modest scenery relative to the West, and the travel is a project." },
+    { id: "uinta", list: "us", rank: 13, name: "Uinta Highline Trail", sub: "Utah",
+      meta: [["Airport", "SLC"], ["Mentions", "5"], ["Season", "Jul–Sep"]], permit: "None",
+      why: "The Uintas are the only major range in the lower 48 that runs east to west: a high plateau of tundra and lakes above 11,000 ft with Utah's highest peaks along the crest. The Highline Trail runs 100 miles of it; the Kings Peak section is the part people do. Remote and empty, and a stretch for a week.",
+      facts: ["No permit."],
+      caveat: "Long, remote, and high the whole way." },
+    { id: "beatenpath", list: "us", rank: 14, name: "The Beaten Path", sub: "Beartooth Mountains, Montana",
+      meta: [["Mentions", "2"], ["Season", "Jul–Sep"]], permit: "None",
+      why: "The Beaten Path crosses the Beartooth plateau from East Rosebud to Cooke City past a chain of 20 lakes, waterfalls, and glaciers below Montana's highest peaks. It is the classic Beartooths trip and the easiest way into a range that is otherwise trackless, and Yellowstone is at the far trailhead.",
+      facts: ["Needs a 95-mile car shuttle over Beartooth Pass."],
+      caveat: "The shuttle logistics." },
+    { id: "bigbend", list: "us", rank: 15, name: "Big Bend, Outer Mountain Loop", sub: "Texas",
+      meta: [["Mentions", "5"], ["Season", "Nov–Mar"]], permit: "NPS · water caches required",
+      why: "Big Bend is the Chihuahuan Desert with a mountain range in the middle: the Outer Mountain Loop climbs from the desert into the Chisos, drops the far side, and comes back through Dodson Canyon along the desert floor, with water cached ahead of time. It is the winter backpack, when everything else on this list is under snow, under the darkest skies in the lower 48.",
+      facts: ["Water caches have to be placed before the walk."],
+      caveat: "Winter only, and the water logistics are the trip." },
+
+    { id: "paine", list: "world", rank: 1, name: "Torres del Paine, the W Trek", sub: "Chilean Patagonia · the O Circuit as the stretch",
+      meta: [["Gateway", "PUQ via Santiago"], ["Mentions", "17"], ["Season", "Oct–Apr"]], permit: "Three portals · 6+ months ahead",
+      why: "Torres del Paine is the reason people go to Patagonia: three granite towers standing over a glacial lake, the Cuernos with their black caps, the Grey Glacier calving into its lake, guanacos on the steppe. The W walks the three valleys that give it its shape, ending each day at a campsite with a refugio and a hot meal if you want one; the O adds the back side over John Gardner Pass with the Southern Ice Field spread out below. It is the most-listed trek in the world for a reason, and the whole thing is done with a tent.",
+      facts: [
+        "Fly to Punta Arenas, bus about 3 hours to Puerto Natales, bus into the park.",
+        "The W: 75–80 km with about 2,730 m of gain, 4 nights, point to point with the catamaran at the west end. The O Circuit: 110–130 km (sources disagree widely), 7–8 nights, a loop.",
+        "Booking runs across three portals: pasesparques.cl for CONAF park entry, vertice.travel for Paine Grande, Grey, Dickson, and Los Perros, and lastorres.com for Central, Chileno, Cuernos, Francés, and Serón. Peak December–February dates go first; plan 6+ months ahead. Camping-only at Vertice is about USD 11–13 a person a night; Las Torres camping-only price unverified.",
+        "CONAF has the O's back side closed until October 31, 2026; the W is open."
+      ],
+      caveat: "The booking puzzle and Patagonian wind. On the O, the John Gardner pass day is long for a 2 mph group, so budget 8 nights." },
+    { id: "laugavegur", list: "world", rank: 2, name: "Laugavegur and Fimmvörðuháls", sub: "Icelandic highlands",
+      meta: [["Gateway", "KEF, nonstop from SFO"], ["Mentions", "13"], ["Season", "late Jun–early Sep"]], permit: "No permit · pre-book campsites",
+      why: "Laugavegur crosses the Icelandic highlands from the geothermal rhyolite hills of Landmannalaugar, where the mountains are orange, green, and pink and a hot river runs by camp, over an obsidian plateau, past Álftavatn, across the black sand of Mælifellssandur, and down into the birch woods of Þórsmörk between three glaciers. Fimmvörðuháls continues over the pass between Eyjafjallajökull and Mýrdalsjökull, past the craters from the 2010 eruption, and down a staircase of twenty waterfalls to Skógafoss. No two days look alike and none look like anywhere else on earth. Tied with Mont Blanc on mentions but the best fit on the list.",
+      facts: [
+        "Highland bus from Reykjavík to Landmannalaugar; out from Skógar. North to south.",
+        "Laugavegur is 54–55 km with roughly 1,500–1,700 m of cumulative gain (sources range from 500 to 2,000). Fimmvörðuháls adds 24 km with 1,000 m up and 1,200 down. 3–4 nights alone, 5–6 with the add-on.",
+        "Camp at the hut sites: Hrafntinnusker, Álftavatn, Emstrur, Þórsmörk. No permit, but the touring association now expects confirmed bookings for huts or campsites before starting. Camping about 2,300 ISK a person a night; 2027 booking not yet posted."
+      ],
+      caveat: "Sideways rain, snowfields into July, unbridged river fords, and Fimmvörðuháls fogs in. Landmannalaugar is a zoo on weekends." },
+    { id: "tmb", list: "world", rank: 3, name: "Tour du Mont Blanc", sub: "France · Italy · Switzerland",
+      meta: [["Gateway", "GVA, 1 h to Chamonix"], ["Mentions", "12"], ["Season", "mid-Jun–mid-Sep"]], permit: "No permit today · 2027 rules pending",
+      why: "The Tour du Mont Blanc circles the highest massif in the Alps through three countries: French villages and glaciers on one side, Italy's Val Veny under the Mont Blanc south face, then the Swiss valleys of Trient and the Col de Balme. Every day ends in a village or a refuge with beer and food, every pass looks across at the Aiguilles and the Grandes Jorasses, and the whole thing is the model every other hut trek copies. It is Europe's classic, and with campgrounds it can be done on a budget.",
+      facts: [
+        "Roughly 170 km and more than 10,000 m of climbing over 11 stages, usually counter-clockwise from Les Houches.",
+        "Honest fit: the full loop is 10–11 stages, which is 10+ nights at our pace with 30 lb. To fit 8 nights use the standard shortcuts: bus Les Houches to Les Contamines, lift or bus around Courmayeur or the Swiss valley floor.",
+        "Camping: official campgrounds most nights and designated bivouac areas in France and Switzerland. Italy has no sanctioned campgrounds on the traditional route through Val Veny and bans wild camping below 2,500 m. Campgrounds didn't need advance booking in 2026.",
+        "2027 watch: French commune mayors have proposed mandatory booking for every night, a wild-camping ban, and trail-side checks. Not final."
+      ],
+      caveat: "Length, crowds, and the rule change." },
+    { id: "overland", list: "world", rank: 4, name: "Overland Track", sub: "Tasmania, Australia",
+      meta: [["Gateway", "LST via SYD or MEL"], ["Mentions", "12"], ["Season", "Oct–May"]], permit: "34 walkers a day · opens early July",
+      why: "The Overland Track is Australia's great walk: Cradle Mountain's dolerite crags and Dove Lake at the start, then six days south through button-grass plains, myrtle rainforest with thousand-year-old pines, and the plateau under Mt Ossa, Tasmania's highest peak, to the glacial Lake St Clair. Wombats and pademelons around camp at dusk, platypus in the creeks. A tent is mandatory, so it is inherently self-supported, and the quota keeps it quiet. It is the one on this list that feels like another planet's version of the Sierra.",
+      facts: [
+        "Shuttle about AUD 80 to Cradle; ferry from Narcissus to Cynthia Bay at the end. North to south only in season.",
+        "65 km official, 82 if you walk the lake shore. Gain is quoted at 1,461 m, or 5,218 m with the side trips (Cradle summit, Mt Ossa at 1,617 m, Pine Valley). 5 nights / 6 days.",
+        "Booked season October 1 to May 31, AUD 312 an adult including the parks pass and shuttle, 34 independent walkers a day. The 2026–27 season opened July 7 at 9 am AEST and filled fast; expect early July 2027 for the next one."
+      ],
+      caveat: "Long-haul travel for a 6-day walk, so pair it with Three Capes or New Zealand. Leeches, mud, and snow are possible any month. Be online the morning it opens." },
+    { id: "wct", list: "world", rank: 5, name: "West Coast Trail", sub: "Vancouver Island, British Columbia",
+      meta: [["Gateway", "YYJ or YVR"], ["Mentions", "6"], ["Season", "May–Sep"]], permit: "Parks Canada, late January · sells out in minutes",
+      why: "The West Coast Trail follows the shipwreck coast of Vancouver Island for 75 km, built as a lifesaving trail for sailors wrecked in the Graveyard of the Pacific. Old-growth cedar and Sitka spruce, beach camps at creek mouths, sea lions and grey whales offshore, and the trail's famous ladders, cable cars, and a floating crab shack at Nitinaht Narrows. If we liked the Lost Coast, this is the same idea with more of everything, and it is the closest world-list trek to home.",
+      facts: [
+        "West Coast Trail Express bus from Victoria to Port Renfrew (Gordon River) or Bamfield (Pachena Bay); mid-point entry at Nitinaht.",
+        "75 km official, with GPS tracks suggesting 85–90. Elevation modest. 6 nights / 7 days typical. Beach and forest camps with bear caches.",
+        "Reservation: the 2026 launch moved to February 5 at 8 am PT with a queue system, and spots sell out within minutes. Quota 70 a day. 2026 total about CAD 325 a person. 2027 date unverified; expect late January."
+      ],
+      caveat: "Mud, ladders, and tide tables. The southern 20 km is slow and 2 mph is optimistic there. Rain and hypothermia risk in summer, no cell service." },
+    { id: "kalalau", list: "world", rank: 6, name: "Kalalau Trail", sub: "Nā Pali Coast, Kauai",
+      meta: [["Mentions", "6"], ["Season", "Year-round · May–Sep driest"]], permit: "90 days ahead · 60 a day",
+      why: "The Kalalau Trail traverses the Nā Pali cliffs of Kauai, fluted green walls dropping 2,000 ft to the Pacific, to a beach reachable only on foot or by boat. Hanakāpīʻai Falls on the way in, Crawler's Ledge halfway, and Kalalau Beach itself with a waterfall to shower under. A 5-hour flight, a 2–3 night trip, and the most tropical thing on the list.",
+      facts: [
+        "Permit: $35 a night for non-residents, 60 permits a day released exactly 90 days ahead at midnight Hawaii time, plus a separate Hāʻena parking or shuttle booking. Five-night maximum with one at Hanakoa."
+      ],
+      caveat: "Usually a 2–3 night trip. Crawler's Ledge exposure, and stream crossings close in rain." },
+    { id: "nz", list: "world", rank: 7, name: "Routeburn and Kepler, back to back", sub: "Fiordland, New Zealand",
+      meta: [["Gateway", "ZQN / Te Anau"], ["Mentions", "6 and 7"], ["Season", "Nov–Apr"]], permit: "DOC, mid-May for the following season",
+      why: "Fiordland is the wettest, greenest, most vertical corner of New Zealand, and the Routeburn and Kepler are its two Great Walks that allow tents. The Routeburn crosses the Harris Saddle between the Hollyford and Routeburn valleys with the Darran Mountains across the way; the Kepler climbs above the bushline onto a tussock ridge with Lake Te Anau and the fiords on both sides. Well-built trails, huts to duck into when it rains, keas at camp. Back to back from Te Anau they make a 5-night trip.",
+      facts: [
+        "Routeburn 33 km over 2 nights; Kepler 60 km over 3 nights. Campsites NZ$42 a night for internationals, huts $132. The 2026–27 bookings opened May 15 and 19; expect mid-May 2027 for the next season.",
+        "Milford (4 lists) is hut-only, no camping, NZ$152 a night, and sells out in minutes on opening day. Skip it unless a hut trip is fine."
+      ],
+      caveat: "Long flights, Fiordland weather, and the booking morning." },
+    { id: "kungsleden", list: "world", rank: 8, name: "Kungsleden, Abisko to Nikkaluokta", sub: "Swedish Lapland",
+      meta: [["Gateway", "ARN → Kiruna"], ["Mentions", "7"], ["Season", "late Jun–mid-Sep"]], permit: "None · huts plus free camping",
+      why: "The Kungsleden is Sweden's King's Trail through Lapland above the Arctic Circle: broad U-shaped valleys, Sámi reindeer herds, birch forest, and the midnight sun in July. The Abisko-to-Nikkaluokta section crosses the Tjäktja Pass and skirts Kebnekaise, Sweden's highest mountain, with STF huts a day apart and free camping anywhere. Gentle terrain and no permit, so it is the easy week.",
+      facts: ["No permit."],
+      caveat: "Subtler scenery than the top five, mosquitoes in July, and long travel." },
+    { id: "salkantay", list: "world", rank: 9, name: "Salkantay Trek", sub: "Peru · the Inca Trail alternative",
+      meta: [["Gateway", "CUZ"], ["Mentions", "3 (Inca Trail 14)"], ["Season", "Apr–Oct"]], permit: "None for Salkantay · Inca Trail is agency + guide",
+      why: "Salkantay is the high route to Machu Picchu: from Mollepata up under the 20,574-ft glaciated peak of Salkantay, over the pass at 15,000 ft, and down through cloud forest and coffee farms to Aguas Calientes, then the ruins on the last morning. It can be done without a guide, and you arrive at Machu Picchu having walked to it, which is what the Inca Trail people are paying for. The Inca Trail itself is 42 km over 3 nights with a mandatory agency and guide, about 200 permits a day, gone six months out.",
+      facts: ["2027 Inca Trail permits release around October 2026, if anyone wants that version."],
+      caveat: "Altitude; acclimatize in Cusco first. Salkantay has become a busy guided route with lodge options." },
+    { id: "huayhuash", list: "world", rank: 10, name: "Huayhuash Circuit", sub: "Cordillera Huayhuash, Peru",
+      meta: [["Mentions", "1"], ["Season", "May–Sep"]], permit: "Community fees · no permit",
+      why: "The Huayhuash Circuit loops a compact range of 20,000-ft peaks in Peru, including Siula Grande of Touching the Void, with a turquoise lake below an ice face almost every day and hot springs at Viconga. People who have done many treks regularly call it the most beautiful in the world. High and long, but on the list because if we ever do one big Andes trip, this is the one.",
+      facts: ["About 280–300 soles in community fees. Independent only if well acclimatized."],
+      caveat: "Longer and higher than the brief. A stretch goal." },
+    { id: "hauteroute", list: "world", rank: 11, name: "Walker's Haute Route", sub: "Chamonix to Zermatt",
+      meta: [["Mentions", "8"], ["Season", "Jul–Sep"]], permit: "Huts book months ahead",
+      why: "The Walker's Haute Route links Chamonix to Zermatt through the highest peaks in the Alps, hut to hut across eleven passes, ending under the Matterhorn. Too long for 8 nights unless sectioned; the Swiss half from Arolla to Zermatt is the part to do in a week.",
+      facts: [],
+      caveat: "A hut trip, and a long one." },
+    { id: "altavia", list: "world", rank: 12, name: "Alta Via 1", sub: "The Dolomites, Italy",
+      meta: [["Mentions", "2"], ["Season", "late Jun–Sep"]], permit: "Rifugio-only · no camping",
+      why: "Alta Via 1 crosses the Dolomites from Lago di Braies to Belluno under the pale limestone towers of the Tofane, Pelmo, and Civetta, with a rifugio and a plate of pasta every night. Camping is prohibited, so it is a hut trip, but it is the most beautiful hut trip in Europe.",
+      facts: [],
+      caveat: "A hut trip by rule." },
+  ];
+
+  const LISTS = { ca: "California", us: "Continental US", world: "Outside the US" };
+  const STORE_KEY = "next-trip-dossier-stars";
+
+  function loadStars() {
+    try { return new Set(JSON.parse(localStorage.getItem(STORE_KEY) || "[]")); } catch (e) { return new Set(); }
+  }
+  function saveStars(set) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify([...set])); } catch (e) { /* storage unavailable; stars live for this page load only */ }
+  }
+  const stars = loadStars();
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+  const STAR_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.7.8-4.9 4.6 1.3 6.6L12 17.3l-6 3.3 1.3-6.6L2.4 9.4l6.7-.8z"/></svg>';
+
+  function renderTable(list) {
+    const rows = TRIPS.filter(t => t.list === list);
+    const isCa = list === "ca";
+    const head = isCa
+      ? "<tr><th>#</th><th>Trip</th><th>Drive</th><th>Mentions</th><th>Permit</th><th>Season</th></tr>"
+      : "<tr><th>#</th><th>Trip</th><th>Where</th><th>Mentions</th><th>Permit</th><th>Season</th></tr>";
+    const body = rows.map(t => {
+      const m = Object.fromEntries(t.meta);
+      const where = isCa ? (m.Drive || "") : (m.Airport || m.Gateway || "");
+      return `<tr><td class="n">${t.rank}</td><td class="name"><a href="#${t.id}">${esc(t.name)}</a></td><td>${esc(where)}</td><td class="m">${esc(m.Mentions || "")}</td><td>${esc(t.permit)}</td><td>${esc(m.Season || "")}</td></tr>`;
+    }).join("");
+    document.getElementById(list + "-table").innerHTML = `<table class="sum"><thead>${head}</thead><tbody>${body}</tbody></table>`;
+  }
+
+  function renderTrips(list) {
+    const rows = TRIPS.filter(t => t.list === list);
+    document.getElementById(list + "-trips").innerHTML = rows.map(t => {
+      const chips = t.meta.map(([k, v]) => `<span class="chip"><b>${esc(k)}</b>${esc(v)}</span>`).join("") +
+        `<span class="chip perm"><b>Permit</b>${esc(t.permit)}</span>`;
+      const facts = t.facts.length ? `<ul>${t.facts.map(f => `<li>${esc(f)}</li>`).join("")}</ul>` : "";
+      const on = stars.has(t.id);
+      return `<article class="trip${on ? " starred" : ""}" id="${t.id}" data-id="${t.id}">
+        <div class="rank">${String(t.rank).padStart(2, "0")}</div>
+        <div class="body">
+          <div class="top">
+            <h3>${esc(t.name)}<small>${esc(t.sub)}</small></h3>
+            <button type="button" class="star" data-id="${t.id}" aria-pressed="${on}" aria-label="Star ${esc(t.name)}">${STAR_SVG}<span>${on ? "Starred" : "Star it"}</span></button>
+          </div>
+          <div class="chips">${chips}</div>
+          <p class="why">${esc(t.why)}</p>
+          ${facts}
+          <p class="caveat"><b>Caveat.</b> ${esc(t.caveat)}</p>
+        </div>
+      </article>`;
+    }).join("");
+  }
+
+  function renderNav() {
+    const nav = document.getElementById("trip-nav");
+    nav.innerHTML = Object.keys(LISTS).map(list => {
+      const items = TRIPS.filter(t => t.list === list).slice(0, 5).map(t =>
+        `<a href="#${t.id}"><span class="n">${String(t.rank).padStart(2, "0")}</span>${esc(t.name)}</a>`).join("");
+      return `<div class="label">${esc(LISTS[list])} · top 5</div>${items}`;
+    }).join("");
+  }
+
+  function shortlistText() {
+    const byList = {};
+    TRIPS.filter(t => stars.has(t.id)).forEach(t => { (byList[t.list] = byList[t.list] || []).push(t); });
+    const parts = Object.keys(LISTS).filter(l => byList[l]).map(l =>
+      `${LISTS[l]}: ` + byList[l].map(t => `#${t.rank} ${t.name}`).join("; "));
+    return parts.length ? "My shortlist — " + parts.join(" | ") : "";
+  }
+
+  function renderShortlist() {
+    const ul = document.getElementById("sl-list");
+    const empty = document.getElementById("sl-empty");
+    const btn = document.getElementById("sl-copy");
+    const picked = TRIPS.filter(t => stars.has(t.id));
+    ul.innerHTML = picked.map(t => `<li><span class="n">${esc(LISTS[t.list].slice(0, 2).toUpperCase())} ${String(t.rank).padStart(2, "0")}</span><span>${esc(t.name)}</span></li>`).join("");
+    empty.hidden = picked.length > 0;
+    btn.disabled = picked.length === 0;
+  }
+
+  function toggle(id) {
+    if (stars.has(id)) stars.delete(id); else stars.add(id);
+    saveStars(stars);
+    const art = document.getElementById(id);
+    const btn = art.querySelector(".star");
+    const on = stars.has(id);
+    art.classList.toggle("starred", on);
+    btn.setAttribute("aria-pressed", String(on));
+    btn.querySelector("span").textContent = on ? "Starred" : "Star it";
+    renderShortlist();
+  }
+
+  ["ca", "us", "world"].forEach(l => { renderTable(l); renderTrips(l); });
+  renderNav();
+  renderShortlist();
+
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".star");
+    if (b) toggle(b.dataset.id);
+  });
+
+  document.getElementById("sl-copy").addEventListener("click", async () => {
+    const text = shortlistText();
+    const ta = document.getElementById("sl-text");
+    const hint = document.getElementById("sl-hint");
+    ta.value = text; ta.hidden = false;
+    hint.hidden = false;
+    try {
+      await navigator.clipboard.writeText(text);
+      hint.textContent = "Copied. Paste it into the group text.";
+    } catch (err) {
+      hint.textContent = "Select the text above and copy it, then paste it into the group text.";
+      ta.focus(); ta.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
